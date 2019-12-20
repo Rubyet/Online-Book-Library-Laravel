@@ -14,7 +14,8 @@
 	<ul>
 	  <li><a href="/home"><span>Home</span></a></li>
 	  <li>
-		<form action="/home" method="post">
+		<form action="/book/search/post" method="post">
+		{{csrf_field()}}
 			<input type="text" name="search" >
 			<input type="submit" name= "submit" value="Search">
 		</form>

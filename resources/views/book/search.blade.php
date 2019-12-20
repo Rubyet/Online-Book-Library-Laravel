@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>All Books</title>
-  <link href="\style.css" rel="stylesheet" type="text/css">
+  <link href="\css\style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="main">
@@ -14,44 +14,39 @@
 	<ul>
 	  <li><a href="/home"><span>Home</span></a></li>
 	  <li>
-		<form action="/home" method="post">
+		<form action="/book/search/post" method="post">
+		{{csrf_field()}}
 			<input type="text" name="search" >
 			<input type="submit" name= "submit" value="Search">
 		</form>
 	  </li>
-	  <%if(id1>0)
-			{
-			%>	
-				<li><a href="/user/profile/<%= id1 %>"><span>profile</span></a></li>
-				<li><a href="/logout"><span>Signout</span></a></li>
-			<%
-			}else
-			{
-			%>	<li><a href="/login"><span>Signin</span></a></li>
+	  		@if(session('id'))	
+				<li><a href=""><span>profile</span></a></li>
+				<li><a href="{{route('logout.index')}}"><span>Signout</span></a></li>
+			@else
+				<li><a href="/login"><span>Signin</span></a></li>
 				<li> <a href="/user/reg"><span>Signup</span></a></li>
-			<%
-			}
-		%>
+			@endif
 	</ul>
 	</div>
 	</div>
 	
 	
 	<div class="sections">
-		<h2><%= book[0].genre %><br><br></h2>
+		<h2>All Catagory<br><br></h2>
 		
-			<% for(var i=0; i< book.length; i++){ %>
-				<div class="section2">
+			@foreach($books as $book)
+				<div class="section1">
 				
-					<h3><%= book[i].name %></h3>
+					<h3>{{$book->name}}</h3>
 					<p>&nbsp;</p>
 					<p>
-						<img src="/image/<%= book[i].image %>" alt="HTML5 Icon" width="170" height="200"><br>
+						<img src="/upload/image/{{ $book->image }}" alt="HTML5 Icon" width="170" height="200"><br>
 					</p>
 					<p>&nbsp;</p>
-					<p><a href="/book/bookdetails/<%= book[i].id %>" class="more">Read Details</a></p>
+					<p><a href="{{route('book.show',$book->id)}}" class="more">Read Details</a></p>
 				</div>
-			<% } %>
+			@endforeach
 			
 	</div>
 	

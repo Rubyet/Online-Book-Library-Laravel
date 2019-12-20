@@ -57,6 +57,18 @@ class BookController extends Controller
      * @param  \App\book  $book
      * @return \Illuminate\Http\Response
      */
+    public function search(book $book)
+    {
+        $books = \App\book::all();
+		return view('book.search')->with('books',$books);
+    }
+    public function searchResult(Request $request)
+    {
+        $search= $request->search;
+        $books = \App\book::where('name',$search);
+        
+        //return view('book.search')->with('books',$books);
+    }
     public function edit(book $book)
     {
         //
@@ -71,7 +83,7 @@ class BookController extends Controller
      */
     public function update(Request $request, book $book)
     {
-        //
+        
     }
 
     /**
