@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>All Books</title>
-  <link href="\style.css" rel="stylesheet" type="text/css">
+  <link href="\css\style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="main">
@@ -19,56 +19,48 @@
 			<input type="submit" name= "submit" value="Search">
 		</form>
 	  </li>
-	  <%if(id1>0)
-		{
-		%>	
-			<li><a href="/user/profile/<%= id1 %>"><span>profile</span></a></li>
-			<li><a href="/logout"><span>Signout</span></a></li>
-		<%
-		}else
-		{
-		%>	<li><a href="/login"><span>Signin</span></a></li>
-			<li> <a href="/user/reg"><span>Signup</span></a></li>
-		<%
-		}
-	%>
-	  
+	  @if(session('id'))	
+				<li><a href=""><span>profile</span></a></li>
+				<li><a href="{{route('logout.index')}}"><span>Signout</span></a></li>
+			@else
+				<li><a href="/login"><span>Signin</span></a></li>
+				<li> <a href="/user/reg"><span>Signup</span></a></li>
+			@endif
 	</ul>
 	</div>
 	</div>
 	
 	
 	<div class="sections">
-		<h2><%= book[0].name %><br><br></h2>
+		<h2>{{$books->name}}<br><br></h2>
 			<div class="section1">
 			
 				<p>&nbsp;</p>
 				<p>
-					<img src="\image\<%= book[0].image %>" alt="HTML5 Icon" width="170" height="200"><br>
+					<img src="/upload/image/{{ $books->image }}" alt="HTML5 Icon" width="170" height="200"><br>
 				</p>
 			</div>
 			<div class="description">
-				<h3>Author: <%= book[0].author %></h3>
+				<h3>Author: {{ $books->author }}</h3>
 				<p>&nbsp;</p>
-				<h3>Genre: <%= book[0].genre %></h3>
+				<h3>Genre: {{ $books->genre }}</h3>
 				<br><br>
 				<p>
 					<h3>Description: </h3>
 					<br>
-					<%= book[0].details %>
+					{{ $books->details }}
 				</p>
 				<p>&nbsp;</p>
 				<p>
-				<%if(id1>0)
-				{
-				%>	<a href="/<%= book[0].file %>"><span>Download</span></a>
-				<%
-				}else
-				{
-				%>	<h4><br>Only Members Can Download Books. SignUp Now</h4>
-				<%
-				}
-				%>
+				@if(session('id'))
+				
+					<a href="/upload/{{$books->file}}"><span>Download</span></a>
+				
+				@else
+				
+					<h4><br>Only Members Can Download Books. <a href="{{route('reg.index')}}"><span>Signup</span></a> Now</h4>
+				
+				@endif
 				</p>
 			</div>
 		</div>

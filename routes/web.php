@@ -26,7 +26,9 @@ Route::get('/logout', 'LogoutController@index')->name('logout.index');
 Route::get('/home', 'HomeController@index')->name('home.index');
 
 Route::get('/book', 'BookController@index')->name('book.index');
-Route::get('/book/{id}', 'BookController@index')->name('book.show');
+Route::get('/book/{id}', 'BookController@show')->name('book.show');
+
+
 
 Route::get('/user', 'UserController@index')->name('user.index');
 Route::get('/user/profile/{id}', 'UserController@profile')->name('user.profile');

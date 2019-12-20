@@ -14,7 +14,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = \App\book::all();
+		return view('book.index')->with('books',$books);
     }
 
     /**
@@ -44,9 +45,10 @@ class BookController extends Controller
      * @param  \App\book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(book $book)
+    public function show(book $book,$id)
     {
-        //
+        $books = \App\book::find($id);
+		return view('book.bookdetails')->with('books',$books);
     }
 
     /**
