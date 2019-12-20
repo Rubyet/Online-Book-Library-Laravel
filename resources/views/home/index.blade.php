@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Online Book Libray</title>
-  <link href="\style.css" rel="stylesheet" type="text/css">
+  <link href="\css\style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="main">
@@ -72,7 +72,7 @@
 	
 		<div class="sections">
 		<h2>Latest Added Books<br><br></h2>
-			<div class="section1">
+			<!-- <div class="section1">
 				
 				<h3><%= bookdetails[0].name %></h3>
 				<p>&nbsp;</p>
@@ -108,7 +108,7 @@
 				</p>
 				<p>&nbsp;</p>
 				<p><a href="/book/bookdetails/<%= bookdetails[3].id %>" class="more">Read Details</a></p>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div class="footer">
