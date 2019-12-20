@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Login Page</title>
-  <link href="\style2.css" rel="stylesheet" type="text/css">
+  <link href="\css\style2.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="main">
@@ -12,8 +12,8 @@
 	<div class="header-top">
 	<h1>Login Here</h1>
 	<ul>
-	  <li><a href="/home"><span>Home</span></a></li>
-	  <li> <a href="/user/reg"><span>Signup</span></a></li>
+	  <li><a href="{{ route('home.index') }}"><span>Home</span></a></li>
+	  <li> <a href="{{ route('reg.index') }}"><span>Signup</span></a></li>
 	</ul>
 	</div>
 	</div>
@@ -25,8 +25,9 @@
 	<div class="left-panel">
 	<p>
 		<form  method="post">
+		{{csrf_field()}}
 		  <div class="imgcontainer">
-			<img src="/Avater.png" alt="Avatar" class="avatar" width="200" height="200" >
+			<img src="/images/Avater.png" alt="Avatar" class="avatar" width="200" height="200" >
 		  </div>
 
 		  <div class="container">
@@ -41,7 +42,7 @@
 		  </div>
 
 		  <div class="container" style="background-color:#f1f1f1">
-			<a href="/home" class="cancelbtn">Cancel</a>
+			<a href="{{ route('home.index') }}" class="cancelbtn">Cancel</a>
 			<span class="psw">Forgot <a href="#">password?</a></span>
 		  </div>
 		</form>
@@ -64,7 +65,7 @@
 	</div>
 	<div class="footer-right">
 	<ul>
-	  <li><a href="index.html">Home</a>/</li>
+	  <li><a href="{{ route('home.index') }}">Home</a>/</li>
 	  <li><a href="#">Go to Top</a>/</li>
 	  <li><a href="#">About</a></li>
 	</ul>

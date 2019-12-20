@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Profile</title>
-  <link href="\style2.css" rel="stylesheet" type="text/css">
+  <link href="\css\style2.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="main">
@@ -25,49 +25,49 @@
 	<div class="left-in">
 	<div class="left-panel">
 	<p>
-		<form method="post" ">
+		<form >
 			<div class="sections">
-		<h2>Edit your Profile<br><br></h2>
+		<h2>Profile<br><br></h2>
 			<div class="section1">
 				
 				<p>&nbsp;</p>
 				<p>
-					<img src="/image/<%= user[0].image %>" alt="HTML5 Icon" width="170" height="200"><br>
+					<img src="/upload/image/{{ $user->image }}" alt="HTML5 Icon" width="170" height="200"><br>
 				</p>
 			</div>
 			<div class="profile">
 				<div class="container">
 					<label for="uname"><b>Username</b></label>
-					<input type="text" value="<%= user[0].name %>" name="username" >
+					<input type="text" value="{{ $user->name }}" name="username" readonly>
 					
 					<label for="uname"><b>Address</b></label>
-					<input type="text" value="<%= user[0].address %>" name="address" >
+					<input type="text" value="{{ $user->address }}" name="address" readonly>
 					
 					<label for="uname"><b>Phone/Mobile No.</b></label>
-					<input type="text" value="<%= user[0].phone %>" name="phone" >
+					<input type="text" value="{{ $user->phone }}" name="phone" readonly>
 					
 					<label for="uname"><b>Email</b></label>
-					<input type="text" value="<%= user[0].email %>" name="email" >
+					<input type="text" value="{{ $user->email }}" name="email" readonly>
 					
 					<label for="psw"><b>Password</b></label>
-					<input type="password" value="<%= user[0].password %>" name="password" >
+					<input type="password" value="{{ $user->password }}" name="password" readonly>
 					
 					<label for="uname"><b>Type<br></b></label>
-					<select name="cars"  >
-					<% if(user[0].type=="Admin")
-						{
-					%>		<option value="Admin">Admin</option>
-					<%	}else if(user[0].type=="Member")
-						{
-					%>		<option value="Member">Member</option>
-					<%	}else
-						{
-					%>		<option value="Moderator">Moderator</option>
-					<%	}
-					%>
+					<select name="type" readonly >
+					@if($user->type=="Admin")
+					
+						<option value="Admin" "selected" >Admin</option>
+					@elseif($user->type=="Member")
+						
+						<option value="Member"  "selected" >Member</option>
+					@else
+					
+						<option value="Moderator" "selected">Moderator</option>
+					
+					@endif
 					</select>
 
-					<button type="submit">Edit</button>
+					<a href="{{ route('user.edit',$user->id) }}" class="cancelbtn">Edit</a>
 					
 				  </div>
 			</div>
@@ -75,7 +75,7 @@
 		  
 
 		  <div class="container" style="background-color:#f1f1f1">
-			<a href="/home" class="cancelbtn">Cancel</a>
+			<a href="{{ route('user.index') }}" class="cancelbtn">Cancel</a>
 		  </div>
 		</form>
 	<br><br><br>
@@ -97,7 +97,7 @@
 	</div>
 	<div class="footer-right">
 	<ul>
-	  <li><a href="/home">Home</a>/</li>
+	  <li><a href="{{ route('user.index') }}">Home</a>/</li>
 	  <li><a href="#">Go to Top</a>/</li>
 	  <li><a href="#">About</a></li>
 	</ul>

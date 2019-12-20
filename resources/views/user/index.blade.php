@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Online Book Libray</title>
-  <link href="\style.css" rel="stylesheet" type="text/css">
+  <link href="\css\style.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="main">
@@ -12,18 +12,18 @@
 	<div class="header-top">
 	<h1>Online Book Library</h1>
 	<ul>
-	  <li><a href="/home"><span>Home</span></a></li>
+	  <li><a href="{{ route('user.index') }}"><span>Home</span></a></li>
 	  <li>
 		<form method="post">
 			<input type="text" name="search" >
 			<input type="submit" name= "submit" value="Search">
 		</form>
 	  </li>
-	  <li><a href="/user/profile/<%= id1 %>"><span>profile</span></a></li>
-	  <li><a href="/logout"><span>Signout</span></a></li>
+	  <li><a href="{{ route('user.profile' , session('id')) }}"><span>profile</span></a></li>
+	  <li><a href="{{ route('logout.index') }}"><span>Signout</span></a></li>
 	</ul>
 	</div>
-	<div class="header-img"><img src="header2.jpg" alt="" height="225" width="899"></div>
+	<div class="header-img"><img src="\images\header2.jpg" alt="" height="225" width="899"></div>
 	</div>
 	<div class="content">
 	<div class="left-out">
@@ -50,15 +50,15 @@
 	<div class="right-block">
 	<h2>Categories</h2>
 	<ul>
-	  <li><a href="/book">ALL</a></li>
-	  <li><a href="/book/booksearch/Action and adventure">Action and adventure</a></li>
-	  <li><a href="/book/booksearch/Biography">Biography</a></li>
-	  <li><a href="/book/booksearch/Comic book">Comic book</a></li>
-	  <li><a href="/book/booksearch/Encyclopedia">Encyclopedia</a></li>
-	  <li><a href="/book/booksearch/Guide">Guide</a></li>
-	  <li><a href="/book/booksearch/Fantasy">Fantasy</a></li>
-	  <li><a href="/book/booksearch/Poetry">Poetry</a></li>
-	  <li><a href="/book/booksearch/Novel">Novels</a></li>
+	  <li><a href="{{ route('book.index') }}">ALL</a></li>
+	  <li><a href="{{ route('book.show', 'Action and adventure') }}">Action and adventure</a></li>
+	  <li><a href="{{ route('book.show', 'Biography') }}">Biography</a></li>
+	  <li><a href="{{ route('book.show', 'Comic book') }}">Comic book</a></li>
+	  <li><a href="{{ route('book.show', 'Encyclopedia') }}">Encyclopedia</a></li>
+	  <li><a href="{{ route('book.show', 'Guide') }}">Guide</a></li>
+	  <li><a href="{{ route('book.show', 'Fantasy') }}">Fantasy</a></li>
+	  <li><a href="{{ route('book.show', 'Poetry') }}">Poetry</a></li>
+	  <li><a href="{{ route('book.show', 'Novels') }}">Novels</a></li>
 	  <li><a href="#">>More</a></li>
 	</ul>
 	</div>
@@ -66,45 +66,45 @@
 	</div>
 	</div>
 	
-		<div class="sections">
+	<div class="sections">
 		<h2>Latest Added Books<br><br></h2>
 			<div class="section1">
 				
-				<h3><%= bookdetails[0].name %></h3>
+				<h3>{{ $books[0]->name }}</h3>
 				<p>&nbsp;</p>
 				<p>
-					<img src="image/<%= bookdetails[0].image %>" alt="HTML5 Icon" width="170" height="200"><br>
+					<img src="/upload/image/{{ $books[0]->image }}" alt="HTML5 Icon" width="170" height="200"><br>
 				</p>
 				<p>&nbsp;</p>
-				<p><a href="/book/bookdetails/<%= bookdetails[0].id %>" class="more">Read Details</a></p>
+				<p><a href="" class="more">Read Details</a></p>
 			</div>
 			<div class="section2">
-				<h3><%= bookdetails[1].name %></h3>
+				<h3>{{ $books[1]->name }}</h3>
 				<p>&nbsp;</p>
 				<p>
-					<img src="image/<%= bookdetails[1].image %>" alt="HTML5 Icon" width="170" height="200"> <br>
+					<img src="/upload/image/{{ $books[1]->image }}" alt="HTML5 Icon" width="170" height="200"> <br>
 				</p>
 				<p>&nbsp;</p>
-				<p><a href="/book/bookdetails/<%= bookdetails[1].id %>" class="more">Read Details</a></p>
+				<p><a href="" class="more">Read Details</a></p>
 			</div>
 			<div class="section3">
-				<h3><%= bookdetails[2].name %></h3>
+				<h3>{{ $books[2]->name }}</h3>
 				<p>&nbsp;</p>
 				<p>
-					<img src="image/<%= bookdetails[2].image %>" alt="HTML5 Icon" width="170" height="200"><br>
+					<img src="/upload/image/{{ $books[2]->image }}" alt="HTML5 Icon" width="170" height="200"><br>
 				</p>
 				<p>&nbsp;</p>
-				<p><a href="/book/bookdetails/<%= bookdetails[2].id %>" class="more">Read Details</a></p>
+				<p><a href="" class="more">Read Details</a></p>
 			</div>
 			<div class="section4">
-				<h3><%= bookdetails[3].name %></h3>
+				<h3>{{ $books[3]->name }}</h3>
 				<p>&nbsp;</p>
 				<p>
-					<img src="image/<%= bookdetails[3].image %>" alt="HTML5 Icon" width="170" height="200"><br>
+					<img src="/upload/image/{{ $books[3]->image }}" alt="HTML5 Icon" width="170" height="200"><br>
 				</p>
 				<p>&nbsp;</p>
-				<p><a href="/book/bookdetails/<%= bookdetails[3].id %>" class="more">Read Details</a></p>
-			</div>
+				<p><a href="" class="more">Read Details</a></p>
+			</div> 
 		</div>
 	</div>
 	<div class="footer">
@@ -117,7 +117,7 @@
 	</div>
 	<div class="footer-right">
 	<ul>
-	  <li><a href="/home">Home</a>/</li>
+	  <li><a href="{{ route('user.index') }}">Home</a>/</li>
 	  <li><a href="#">Go to Top</a>/</li>
 	  <li><a href="#">About</a></li>
 	</ul>

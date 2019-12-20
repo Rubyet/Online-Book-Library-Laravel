@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\book;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
     function index(Request $request){
 
-			return view('home.index');
+		$books = \App\book::all();
+		return view('home.index')->with('books',$books);
 			
     }
 }

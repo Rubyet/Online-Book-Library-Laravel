@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Registration Page</title>
-  <link href="\style2.css" rel="stylesheet" type="text/css">
+  <link href="\css\style2.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 	<div class="main">
@@ -24,8 +24,8 @@
 	<div class="left-in">
 	<div class="left-panel">
 	<p>
-		<form  method="post" enctype="multipart/mixed">
-		
+		<form  method="post" enctype="multipart/form-data">
+		{{csrf_field()}}
 		  <div class="container">
 			<label for="uname"><b>Username</b></label>
 			<input type="text" placeholder="Enter Username" name="username" required>
