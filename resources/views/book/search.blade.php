@@ -33,8 +33,9 @@
 	
 	
 	<div class="sections">
-		<h2>All Catagory<br><br></h2>
-		
+		<h2>Search: {{$key}} <br><br></h2>
+
+			@if(count($books)>0)
 			@foreach($books as $book)
 				<div class="section1">
 				
@@ -47,7 +48,11 @@
 					<p><a href="{{route('book.show',$book->id)}}" class="more">Read Details</a></p>
 				</div>
 			@endforeach
-			
+			@else
+				<div class="section1">
+					<h3>"No Books Found Related to your search. Try with different key word"</h3>
+				</div>
+			@endif
 	</div>
 	
 	

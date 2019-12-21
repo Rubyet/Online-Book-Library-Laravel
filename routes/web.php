@@ -29,7 +29,7 @@ Route::get('/book', 'BookController@index')->name('book.index');
 Route::get('/book/{id}', 'BookController@show')->name('book.show');
 
 Route::post('/book/search/post', 'BookController@searchResult');
-Route::get('/book/search/a', 'BookController@search')->name('book.search');
+Route::get('/book/search/{id}', 'BookController@search')->name('book.search');
 
 
 

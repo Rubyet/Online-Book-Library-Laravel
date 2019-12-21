@@ -47,7 +47,8 @@ class BookController extends Controller
      */
     public function show(book $book,$id)
     {
-        $books = \App\book::find($id);
+        $books = book::find($id);
+        //echo($books);
 		return view('book.bookdetails')->with('books',$books);
     }
 
@@ -57,17 +58,21 @@ class BookController extends Controller
      * @param  \App\book  $book
      * @return \Illuminate\Http\Response
      */
-    public function search(book $book)
+    public function search(book $book,$id)
     {
-        $books = \App\book::all();
-		return view('book.search')->with('books',$books);
+        $books = book::Where('name', $id)->orWhere('genre', $id)->get();
+        return view('book.search')->with('books',$books)->with('key',$id);
     }
     public function searchResult(Request $request)
     {
         $search= $request->search;
-        $books = \App\book::where('name',$search);
         
-        //return view('book.search')->with('books',$books);
+        $books = book::Where('name', 'like', '%' . $search . '%')
+        ->orWhere('genre', 'like', '%' . $search . '%')->orWhere('author', 'like', '%' . $search . '%')
+        ->get();
+        //echo($search);
+        //echo($books);
+        return view('book.search')->with('books',$books)->with('key',$search);
     }
     public function edit(book $book)
     {

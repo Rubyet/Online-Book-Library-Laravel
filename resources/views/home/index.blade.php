@@ -55,14 +55,14 @@
 	<h2>Categories</h2>
 	<ul>
 	  <li><a href="{{ route('book.index') }}">ALL</a></li>
-	  <li><a href="{{ route('book.show', 'Action and adventure') }}">Action and adventure</a></li>
-	  <li><a href="{{ route('book.show', 'Biography') }}">Biography</a></li>
-	  <li><a href="{{ route('book.show', 'Comic book') }}">Comic book</a></li>
-	  <li><a href="{{ route('book.show', 'Encyclopedia') }}">Encyclopedia</a></li>
-	  <li><a href="{{ route('book.show', 'Guide') }}">Guide</a></li>
-	  <li><a href="{{ route('book.show', 'Fantasy') }}">Fantasy</a></li>
-	  <li><a href="{{ route('book.show', 'Poetry') }}">Poetry</a></li>
-	  <li><a href="{{ route('book.show', 'Novels') }}">Novels</a></li>
+	  <li><a href="{{ route('book.search', 'Action and adventure') }}">Action and adventure</a></li>
+	  <li><a href="{{ route('book.search', 'Biography') }}">Biography</a></li>
+	  <li><a href="{{ route('book.search', 'Comic book') }}">Comic book</a></li>
+	  <li><a href="{{ route('book.search', 'Encyclopedia') }}">Encyclopedia</a></li>
+	  <li><a href="{{ route('book.search', 'Guide') }}">Guide</a></li>
+	  <li><a href="{{ route('book.search', 'Fantasy') }}">Fantasy</a></li>
+	  <li><a href="{{ route('book.search', 'Poetry') }}">Poetry</a></li>
+	  <li><a href="{{ route('book.search', 'Novel') }}">Novels</a></li>
 	  <li><a href="#">>More</a></li>
 	</ul>
 	</div>
@@ -80,7 +80,7 @@
 					<img src="/upload/image/{{ $books[0]->image }}" alt="HTML5 Icon" width="170" height="200"><br>
 				</p>
 				<p>&nbsp;</p>
-				<p><a href="" class="more">Read Details</a></p>
+				<p><a href="{{route('book.show',$books[0]->id)}}" class="more">Read Details</a></p>
 			</div>
 			<div class="section2">
 				<h3>{{ $books[1]->name }}</h3>
@@ -89,7 +89,7 @@
 					<img src="/upload/image/{{ $books[1]->image }}" alt="HTML5 Icon" width="170" height="200"> <br>
 				</p>
 				<p>&nbsp;</p>
-				<p><a href="" class="more">Read Details</a></p>
+				<p><a href="{{route('book.show',$books[1]->id)}}" class="more">Read Details</a></p>
 			</div>
 			<div class="section3">
 				<h3>{{ $books[2]->name }}</h3>
@@ -98,7 +98,7 @@
 					<img src="/upload/image/{{ $books[2]->image }}" alt="HTML5 Icon" width="170" height="200"><br>
 				</p>
 				<p>&nbsp;</p>
-				<p><a href="" class="more">Read Details</a></p>
+				<p><a href="{{route('book.show',$books[2]->id)}}" class="more">Read Details</a></p>
 			</div>
 			<div class="section4">
 				<h3>{{ $books[3]->name }}</h3>
@@ -107,7 +107,7 @@
 					<img src="/upload/image/{{ $books[3]->image }}" alt="HTML5 Icon" width="170" height="200"><br>
 				</p>
 				<p>&nbsp;</p>
-				<p><a href="" class="more">Read Details</a></p>
+				<p><a href="{{route('book.show',$books[3]->id)}}" class="more">Read Details</a></p>
 			</div> 
 		</div>
 	</div>

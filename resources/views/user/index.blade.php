@@ -50,15 +50,15 @@
 	<div class="right-block">
 	<h2>Categories</h2>
 	<ul>
-	  <li><a href="{{ route('book.index') }}">ALL</a></li>
-	  <li><a href="{{ route('book.show', 'Action and adventure') }}">Action and adventure</a></li>
-	  <li><a href="{{ route('book.show', 'Biography') }}">Biography</a></li>
-	  <li><a href="{{ route('book.show', 'Comic book') }}">Comic book</a></li>
-	  <li><a href="{{ route('book.show', 'Encyclopedia') }}">Encyclopedia</a></li>
-	  <li><a href="{{ route('book.show', 'Guide') }}">Guide</a></li>
-	  <li><a href="{{ route('book.show', 'Fantasy') }}">Fantasy</a></li>
-	  <li><a href="{{ route('book.show', 'Poetry') }}">Poetry</a></li>
-	  <li><a href="{{ route('book.show', 'Novels') }}">Novels</a></li>
+	<li><a href="{{ route('book.index') }}">ALL</a></li>
+	  <li><a href="{{ route('book.search', 'Action and adventure') }}">Action and adventure</a></li>
+	  <li><a href="{{ route('book.search', 'Biography') }}">Biography</a></li>
+	  <li><a href="{{ route('book.search', 'Comic book') }}">Comic book</a></li>
+	  <li><a href="{{ route('book.search', 'Encyclopedia') }}">Encyclopedia</a></li>
+	  <li><a href="{{ route('book.search', 'Guide') }}">Guide</a></li>
+	  <li><a href="{{ route('book.search', 'Fantasy') }}">Fantasy</a></li>
+	  <li><a href="{{ route('book.search', 'Poetry') }}">Poetry</a></li>
+	  <li><a href="{{ route('book.search', 'Novel') }}">Novels</a></li>
 	  <li><a href="#">>More</a></li>
 	</ul>
 	</div>
