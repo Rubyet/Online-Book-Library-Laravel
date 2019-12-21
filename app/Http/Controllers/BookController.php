@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\book;
+use App\user;
+use App\comment;
+use \Carbon;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
@@ -17,6 +20,8 @@ class BookController extends Controller
         $books = \App\book::all();
 		return view('book.index')->with('books',$books);
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -45,13 +50,34 @@ class BookController extends Controller
      * @param  \App\book  $book
      * @return \Illuminate\Http\Response
      */
-    public function show(book $book,$id)
+    public function show(book $book,$id,Request $request)
     {
         $books = book::find($id);
-        //echo($books);
-		return view('book.bookdetails')->with('books',$books);
-    }
+        $users = user::all();
 
+        $comments = comment::where('bookId',$id)->get();
+
+        $request->session()->put('bid', $id);
+        //echo($comments);
+		return view('book.bookdetails')->with('books',$books)->with('comments',$comments)->with('users',$users);
+    }
+    public function comment(Request $request,$id)
+    {
+        $mytime = Carbon\Carbon::now();
+        $bid= $id;
+        //echo($bid);
+        $comments = new comment();
+        $comments->userId = $request->session()->get('id');
+        $comments->bookId =$bid;
+        $comments->date =$mytime;
+        $comments->details =$request->comment;
+
+		if($comments->save()){
+            return redirect()->route('book.show', $bid);
+        }else{
+            echo "Problem occured";
+		}
+    }
     /**
      * Show the form for editing the specified resource.
      *

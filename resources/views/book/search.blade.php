@@ -12,18 +12,27 @@
 	<div class="header-top">
 	<h1>Online Book Libray</h1>
 	<ul>
-	  <li><a href="/home"><span>Home</span></a></li>
-	  <li>
-		<form action="/book/search/post" method="post">
-		{{csrf_field()}}
-			<input type="text" name="search" >
-			<input type="submit" name= "submit" value="Search">
-		</form>
-	  </li>
-	  		@if(session('id'))	
+	  
+			  @if(session('id'))	
+			  <li><a href="{{ route('user.index') }}"><span>Home</span></a></li>
+				<li>
+					<form action="/book/search/post" method="post">
+					{{csrf_field()}}
+						<input type="text" name="search" >
+						<input type="submit" name= "submit" value="Search">
+					</form>
+				</li>
 				<li><a href=""><span>profile</span></a></li>
 				<li><a href="{{route('logout.index')}}"><span>Signout</span></a></li>
 			@else
+				<li><a href="{{ route('home.index' )}}"><span>Home</span></a></li>
+				<li>
+					<form action="/book/search/post" method="post">
+					{{csrf_field()}}
+						<input type="text" name="search" >
+						<input type="submit" name= "submit" value="Search">
+					</form>
+				</li>
 				<li><a href="/login"><span>Signin</span></a></li>
 				<li> <a href="/user/reg"><span>Signup</span></a></li>
 			@endif

@@ -12,9 +12,9 @@
 	<div class="header-top">
 	<h1>Online Book Libray</h1>
 	<ul>
-	  <li><a href="/home"><span>Home</span></a></li>
-	  <li><a href="/user/profile"><span>Profile</span></a></li>
-	  <li> <a href="/logout"><span>Signout</span></a></li>
+	  <li><a href="{{ route('user.index' )}}"><span>Home</span></a></li>
+	  <li><a href="{{ route('user.profile' , session('id')) }}"><span>Profile</span></a></li>
+	  <li> <a href="{{ route('logout.index') }}"><span>Signout</span></a></li>
 	</ul>
 	</div>
 	</div>
@@ -102,7 +102,7 @@
 	</div>
 	<div class="footer-right">
 	<ul>
-	  <li><a href="/home">Home</a>/</li>
+	  <li><a href="{{ route('user.index') }}">Home</a>/</li>
 	  <li><a href="#">Go to Top</a>/</li>
 	  <li><a href="#">About</a></li>
 	</ul>

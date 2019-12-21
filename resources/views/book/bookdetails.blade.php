@@ -3,6 +3,9 @@
 <head>
   <title>All Books</title>
   <link href="\css\style.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/rating.css" type="text/css" >
+  
+  <link rel="stylesheet" href="scss.css" type="text/css">
 </head>
 <body>
 	<div class="main">
@@ -12,17 +15,26 @@
 	<div class="header-top">
 	<h1>Online Book Libray</h1>
 	<ul>
-	  <li><a href="/home"><span>Home</span></a></li>
-	  <li>
-		<form action="/home" method="post">
-			<input type="text" name="search" >
-			<input type="submit" name= "submit" value="Search">
-		</form>
-	  </li>
-	  @if(session('id'))	
+	@if(session('id'))	
+			  <li><a href="{{ route('user.index') }}"><span>Home</span></a></li>
+				<li>
+					<form action="/book/search/post" method="post">
+					{{csrf_field()}}
+						<input type="text" name="search" >
+						<input type="submit" name= "submit" value="Search">
+					</form>
+				</li>
 				<li><a href=""><span>profile</span></a></li>
 				<li><a href="{{route('logout.index')}}"><span>Signout</span></a></li>
 			@else
+				<li><a href="{{ route('home.index') }}"><span>Home</span></a></li>
+				<li>
+					<form action="/book/search/post" method="post">
+					{{csrf_field()}}
+						<input type="text" name="search" >
+						<input type="submit" name= "submit" value="Search">
+					</form>
+				</li>
 				<li><a href="/login"><span>Signin</span></a></li>
 				<li> <a href="/user/reg"><span>Signup</span></a></li>
 			@endif
@@ -53,12 +65,54 @@
 				<p>&nbsp;</p>
 				<p>
 				@if(session('id'))
-				
-					<a href="/upload/{{$books->file}}"><span>Download</span></a>
-				
+					<div>
+						<section class="container">
+							<input type="radio" name="example" class="rating" value="1" />
+							<input type="radio" name="example" class="rating" value="2" />
+							<input type="radio" name="example" class="rating" value="3" />
+							<input type="radio" name="example" class="rating" value="4" />
+							<input type="radio" name="example" class="rating" value="5" />
+						</section>
+						<br>
+					</div>
+					<div>
+						<a href="/upload/{{$books->file}}"><span>Download</span></a>
+					</div>
+					<br><br><br>
+					<div>
+						<h3>Reviews of this book</h3>
+						
+						@foreach($comments as $comment)
+						<table border="0" width="500">
+							<tr>
+								<td colspan="2">
+									<p id="comment">{{$comment->details}}</p>	
+								</td>
+							</tr>
+							<tr>
+								<td>
+									
+								</td>
+								<td>
+									<p id="time">⌛: {{$comment->date}}</p>
+								</td>
+							</tr>
+							<br>
+						</table>
+						@endforeach
+						<br>
+						<form method="post" action="/book/comment/{{ $books->id }}">
+						{{csrf_field()}}
+							<input type="text" name="comment" placeholder="Join the conversation.." id="text">
+							<input type="submit" value="Submit" id="button">
+						</form>
+
+					</div>
+					
+					
 				@else
 				
-					<h4><br>Only Members Can Download Books. <a href="{{route('reg.index')}}"><span>Signup</span></a> Now</h4>
+					<h4><br>Only Members Can Download Books. and see the review <a href="{{route('reg.index')}}"><span>Signup</span></a> Now</h4>
 				
 				@endif
 				</p>
@@ -87,6 +141,13 @@
 	</div>
 	</div>
 
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascript/rating.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            $('.container').rating();
+        });
+    </script>
 
 </body>
 </html>

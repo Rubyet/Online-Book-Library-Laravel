@@ -3,6 +3,7 @@
 <head>
   <title>Online Book Libray</title>
   <link href="\css\style.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.css">
 </head>
 <body>
 	<div class="main">
@@ -14,11 +15,12 @@
 	<ul>
 	  <li><a href="{{ route('user.index') }}"><span>Home</span></a></li>
 	  <li>
-		<form method="post">
+	  <form action="/book/search/post" method="post">
+		{{csrf_field()}}
 			<input type="text" name="search" >
 			<input type="submit" name= "submit" value="Search">
 		</form>
-	  </li>
+	</li>
 	  <li><a href="{{ route('user.profile' , session('id')) }}"><span>profile</span></a></li>
 	  <li><a href="{{ route('logout.index') }}"><span>Signout</span></a></li>
 	</ul>
@@ -76,7 +78,7 @@
 					<img src="/upload/image/{{ $books[0]->image }}" alt="HTML5 Icon" width="170" height="200"><br>
 				</p>
 				<p>&nbsp;</p>
-				<p><a href="" class="more">Read Details</a></p>
+				<p><a href="{{route('book.show',$books[0]->id)}}" class="more">Read Details</a></p>
 			</div>
 			<div class="section2">
 				<h3>{{ $books[1]->name }}</h3>
@@ -85,7 +87,7 @@
 					<img src="/upload/image/{{ $books[1]->image }}" alt="HTML5 Icon" width="170" height="200"> <br>
 				</p>
 				<p>&nbsp;</p>
-				<p><a href="" class="more">Read Details</a></p>
+				<p><a href="{{route('book.show',$books[1]->id)}}" class="more">Read Details</a></p>
 			</div>
 			<div class="section3">
 				<h3>{{ $books[2]->name }}</h3>
@@ -94,7 +96,7 @@
 					<img src="/upload/image/{{ $books[2]->image }}" alt="HTML5 Icon" width="170" height="200"><br>
 				</p>
 				<p>&nbsp;</p>
-				<p><a href="" class="more">Read Details</a></p>
+				<p><a href="{{route('book.show',$books[2]->id)}}" class="more">Read Details</a></p>
 			</div>
 			<div class="section4">
 				<h3>{{ $books[3]->name }}</h3>
@@ -103,7 +105,7 @@
 					<img src="/upload/image/{{ $books[3]->image }}" alt="HTML5 Icon" width="170" height="200"><br>
 				</p>
 				<p>&nbsp;</p>
-				<p><a href="" class="more">Read Details</a></p>
+				<p><a href="{{route('book.show',$books[3]->id)}}" class="more">Read Details</a></p>
 			</div> 
 		</div>
 	</div>
@@ -127,6 +129,22 @@
 	</div>
 	</div>
 
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.min.js"></script>
+
+	<script>
+
+			var data=$('#namid').val();
+			console.log(data);
+			Swal.fire({
+			position: 'top-end',
+			icon: 'success',
+			title: 'Welcome Member',
+			showConfirmButton: false,
+			timer: 1500
+			})
+			
+	</script>
 
 </body>
 </html>

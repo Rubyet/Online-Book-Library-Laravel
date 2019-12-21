@@ -14,7 +14,8 @@
 	<ul>
 	  <li><a href="{{ route('home.index') }}"><span>Home</span></a></li>
 	  <li>
-		<form method="post">
+	  <form action="/book/search/post" method="post">
+		{{csrf_field()}}
 			<input type="text" name="search" >
 			<input type="submit" name= "submit" value="Search">
 		</form>

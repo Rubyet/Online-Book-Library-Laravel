@@ -4,16 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\user;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\registration;
 
 class RegistrationController extends Controller
 {
  
 	function index(){
-		return view('user.reg');
+		return view('user.reg')->with('yes','yes');
+
 	}
 
-	function save(Request $request){
+	function save(registration $request){
 		
 		$file = $request->file('image');
 		$fname=$file->getClientOriginalName();
