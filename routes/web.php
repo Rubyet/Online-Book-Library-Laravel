@@ -46,7 +46,7 @@ Route::group(['middleware'=>['sess']], function(){
     Route::get('/user/profile/{id}', 'UserController@profile')->name('user.profile');
     Route::get('/user/edit/{id}', 'UserController@edit')->name('user.edit');
     Route::post('/user/edit/{id}', 'UserController@update');
-
+    Route::get('/blog', 'BlogController@index')->name('blog.index');
     Route::get('/logout', 'LogoutController@index')->name('logout.index');
 
 });
