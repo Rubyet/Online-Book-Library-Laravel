@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 22, 2019 at 12:01 AM
+-- Generation Time: Dec 22, 2019 at 09:49 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -94,7 +94,10 @@ INSERT INTO `comment` (`id`, `userId`, `bookId`, `date`, `details`) VALUES
 (4, 25, 1, '2019-12-21 21:14:57', 'asdaczxca'),
 (5, 25, 1, '2019-12-21 21:28:34', 'vgs'),
 (7, 25, 1, '2019-12-21 22:06:53', 'asdasd'),
-(8, 25, 2, '2019-12-21 22:47:13', 'Really great book');
+(8, 25, 2, '2019-12-21 22:47:13', 'Really great book'),
+(9, 25, 10, '2019-12-22 06:37:20', 'Great'),
+(10, 25, 2, '2019-12-22 06:59:58', 'vALLAGSE'),
+(11, 26, 6, '2019-12-22 07:31:56', 'One of the best book i have ever read');
 
 -- --------------------------------------------------------
 
@@ -120,6 +123,42 @@ CREATE TABLE `history` (
   `userId` int(11) NOT NULL,
   `date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`id`, `bookId`, `userId`, `date`) VALUES
+(1, 2, 25, '2019-12-22 06:19:47'),
+(2, 2, 25, '2019-12-22 06:19:47'),
+(3, 12, 25, '2019-12-22 06:35:32'),
+(4, 12, 25, '2019-12-22 06:35:33'),
+(5, 10, 25, '2019-12-22 06:37:30'),
+(6, 10, 25, '2019-12-22 06:37:30'),
+(7, 10, 25, '2019-12-22 06:37:56'),
+(8, 10, 25, '2019-12-22 06:37:57'),
+(9, 10, 25, '2019-12-22 06:53:15'),
+(10, 10, 25, '2019-12-22 06:53:15'),
+(11, 13, 25, '2019-12-22 06:55:10'),
+(12, 13, 25, '2019-12-22 06:55:10'),
+(13, 13, 25, '2019-12-22 06:55:56'),
+(14, 2, 25, '2019-12-22 07:01:11'),
+(15, 8, 26, '2019-12-22 07:05:15'),
+(16, 8, 26, '2019-12-22 07:13:32'),
+(17, 8, 26, '2019-12-22 07:13:36'),
+(18, 8, 26, '2019-12-22 07:14:21'),
+(19, 6, 26, '2019-12-22 07:15:34'),
+(20, 6, 26, '2019-12-22 07:16:16'),
+(21, 6, 26, '2019-12-22 07:17:00'),
+(22, 6, 26, '2019-12-22 07:20:29'),
+(23, 3, 26, '2019-12-22 07:26:56'),
+(24, 3, 26, '2019-12-22 07:27:58'),
+(25, 3, 26, '2019-12-22 07:27:59'),
+(26, 3, 26, '2019-12-22 07:28:10'),
+(27, 2, 25, '2019-12-22 08:09:42'),
+(28, 2, 25, '2019-12-22 08:09:42'),
+(29, 4, 25, '2019-12-22 08:10:06'),
+(30, 4, 25, '2019-12-22 08:10:06');
 
 -- --------------------------------------------------------
 
@@ -210,9 +249,7 @@ ALTER TABLE `donate`
 -- Indexes for table `history`
 --
 ALTER TABLE `history`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `bookId` (`bookId`),
-  ADD KEY `userId` (`userId`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `notice`
@@ -252,7 +289,7 @@ ALTER TABLE `bookdetails`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `donate`
@@ -264,7 +301,7 @@ ALTER TABLE `donate`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `notice`
@@ -299,13 +336,6 @@ ALTER TABLE `blog`
 --
 ALTER TABLE `donate`
   ADD CONSTRAINT `donate_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `userdetails` (`id`);
-
---
--- Constraints for table `history`
---
-ALTER TABLE `history`
-  ADD CONSTRAINT `history_ibfk_1` FOREIGN KEY (`bookId`) REFERENCES `bookdetails` (`id`),
-  ADD CONSTRAINT `history_ibfk_2` FOREIGN KEY (`userId`) REFERENCES `userdetails` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
