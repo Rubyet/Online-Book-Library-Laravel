@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\book;
 use App\user;
 use App\comment;
+use App\history;
 use \Carbon;
 use Illuminate\Http\Request;
 
@@ -54,12 +55,17 @@ class BookController extends Controller
     {
         $books = book::find($id);
         $users = user::all();
-
+        $history= history::where('bookId',$id)->count();
+        echo($history);
         $comments = comment::where('bookId',$id)->get();
 
         $request->session()->put('bid', $id);
         //echo($comments);
-		return view('book.bookdetails')->with('books',$books)->with('comments',$comments)->with('users',$users);
+        return view('book.bookdetails')
+        ->with('books',$books)
+        ->with('comments',$comments)
+        ->with('users',$users)
+        ->with('history',$history);
     }
     public function comment(Request $request,$id)
     {
@@ -99,6 +105,32 @@ class BookController extends Controller
         //echo($search);
         //echo($books);
         return view('book.search')->with('books',$books)->with('key',$search);
+    }
+
+    public function download(book $book,$id,Request $request)
+    {
+        $mytime = Carbon\Carbon::now();
+        $myFile = public_path("upload/".$id);
+        //echo($myFile);
+        $headers = ['Content-Type: application/pdf'];
+
+        $newName = $id;
+
+        $book = book::where('file',$id)->get();
+        
+        //echo($book[0]->id);
+        $history = new history();
+        $history->userId = $request->session()->get('id');
+        $history->bookId =$book[0]->id;
+        $history->date  =$mytime;
+
+        $history->save();
+        
+        return response()->download($myFile, $newName, $headers);
+    }
+    public function history(book $book)
+    {
+        //
     }
     public function edit(book $book)
     {

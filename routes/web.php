@@ -32,8 +32,12 @@ Route::get('/book', 'BookController@index')->name('book.index');
 Route::post('/book/comment/{id}', 'BookController@comment');
 Route::get('/book/{id}', 'BookController@show')->name('book.show');
 
+Route::post('/book/download/{id}', 'BookController@download');
+
 Route::post('/book/search/post', 'BookController@searchResult');
 Route::get('/book/search/{id}', 'BookController@search')->name('book.search');
+
+Route::get('/book/all/history', 'BookController@history')->name('book.history');
 
 
 Route::group(['middleware'=>['sess']], function(){

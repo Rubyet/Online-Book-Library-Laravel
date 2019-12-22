@@ -22,7 +22,7 @@
 						<input type="submit" name= "submit" value="Search">
 					</form>
 				</li>
-				<li><a href=""><span>profile</span></a></li>
+				<li><a href="{{route('user.profile',session('id'))}}"><span>profile</span></a></li>
 				<li><a href="{{route('logout.index')}}"><span>Signout</span></a></li>
 			@else
 				<li><a href="{{ route('home.index' )}}"><span>Home</span></a></li>
@@ -33,8 +33,8 @@
 						<input type="submit" name= "submit" value="Search">
 					</form>
 				</li>
-				<li><a href="/login"><span>Signin</span></a></li>
-				<li> <a href="/user/reg"><span>Signup</span></a></li>
+				<li><a href="{{ route('login.index') }}"><span>Signin</span></a></li>
+				<li> <a href="{{ route('reg.index') }}"><span>Signup</span></a></li>
 			@endif
 	</ul>
 	</div>

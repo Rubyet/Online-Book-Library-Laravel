@@ -3,6 +3,9 @@
 <head>
   <title>All Books</title>
   <link href="\css\style.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/rating.css" type="text/css" >
+  
+  <link rel="stylesheet" href="scss.css" type="text/css">
 </head>
 <body>
 	<div class="main">
@@ -40,23 +43,7 @@
 	</div>
 	
 	
-	<div class="sections">
-		<h2>All Catagory<br><br></h2>
-		
-			@foreach($books as $book)
-				<div class="section1">
-				
-					<h3>{{$book->name}}</h3>
-					<p>&nbsp;</p>
-					<p>
-						<img src="/upload/image/{{ $book->image }}" alt="HTML5 Icon" width="170" height="200"><br>
-					</p>
-					<p>&nbsp;</p>
-					<p><a href="{{route('book.show',$book->id)}}" class="more">Read Details</a></p>
-				</div>
-			@endforeach
-			
-	</div>
+	
 	
 	
 	
@@ -79,7 +66,6 @@
 	</div>
 	</div>
 	</div>
-
 
 </body>
 </html>
